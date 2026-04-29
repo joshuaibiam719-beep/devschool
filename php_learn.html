@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>php</title>
+    <link rel="stylesheet" href="esitestyle.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div><a href="index.html" class="logo">DevSchool</a></div>
+        <ul>
+             <li><a href="html_learn.html" class="lab">HTML</a></li>
+             <li><a href="py_learn.html" class="lab">PYTHON</a></li>
+                 <li><a href="js_learn.html" class="lab">JAVASCRIPT</a></li>
+                  <li><a href="php_learn.html" class="lab">PHP</a></li>
+            <li><a href="code_editor.html" class="lab">DevLab</a></li>
+            <li><a href="learn.php" class="lab">Back</a></li>
+             
+        
+
+              <!-- <li><a href="#">Back</a></li> -->
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>⚙️ PHP (Hypertext Preprocessor)</h2>
+
+        <p>
+PHP is a server-side scripting language used to create dynamic and 
+interactive websites. Unlike HTML and CSS, which handle structure and design,
+ PHP works behind the scenes to process data, manage forms, and connect to 
+ databases. It helps websites perform actions such as user login, data storage, 
+and content updates, making web pages more functional and responsive.</p>
+        <!-- <button>Get Started</button> -->
+    </section>
+
+    <!-- Lessons -->
+    <section class="lessons">
+        <h3>Popular Lessons</h3>
+
+        <div class="cards">
+            <div class="card">
+                <h4>PHP Basics</h4>
+                <p>Learn the basics of PHP</p>
+                <a href="https://www.w3schools.com/php/default.asp">Start Lesson </a>
+            </div>
+
+            <div class="card">
+                <h4>PHP Forms</h4>
+                <p>PHP Forms and Validation</p>
+                <a href="https://www.w3schools.com/php/php_forms.asp">Start Lesson </a>
+            </div>
+
+            <div class="card">
+                <h4> PHP OOP</h4>
+                <p>learn PHP Obeject Orirented Programming</p>
+                <a href="https://www.w3schools.com/php/php_oop_what_is.asp">Start Lesson </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> DevSchool | All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

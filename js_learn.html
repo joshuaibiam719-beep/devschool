@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+    <link rel="stylesheet" href="esitestyle.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+       <div><a href="index.html" class="logo">DevSchool</a></div>
+        <ul>
+            <li><a href="html_learn.html" class="lab">HTML</a></li>
+             <li><a href="py_learn.html" class="lab">PYTHON</a></li>
+                 <li><a href="js_learn.html" class="lab">JAVASCRIPT</a></li>
+                  <li><a href="php_learn.html" class="lab">PHP</a></li>
+            <li><a href="code_editor.html" class="lab">DevLab</a></li>
+             <li><a href="learn.php" class="lab">Back</a></li>
+        
+
+              <!-- <li><a href="#">Back</a></li> -->
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>⚡ JavaScript</h2>
+
+        <p>
+            JavaScript is a programming language used to make web pages interactive and 
+            dynamic. While HTML provides structure and CSS handles design, JavaScript adds 
+            functionality such as animations, form validation, and real-time updates.
+             It allows websites to respond to user actions, 
+            making them more engaging and user-friendly.
+</p>
+        <!-- <button>Get Started</button> -->
+    </section>
+
+    <!-- Lessons -->
+    <section class="lessons">
+        <h3>Popular Lessons</h3>
+
+        <div class="cards">
+            <div class="card">
+                <h4>Javascript Basics</h4>
+                <p>Learn the basics of Javascript</p>
+                <a href="https://www.w3schools.com/js/default.asp">Start Lesson </a>
+            </div>
+
+            <div class="card">
+                <h4>Javascript Functions</h4>
+                <p>Learn Javascript Functions</p>
+                <a href="https://www.w3schools.com/js/js_function_advanced.asp">Start Lesson </a>
+            </div>
+
+            <div class="card">
+                <h4> Node.JS</h4>
+                <p>learn Node.JS</p>
+                <a href="#">Start Lesson </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> DevSchool | All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

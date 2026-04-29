@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeBase</title>
+    <link rel="icon" type="image/x-icon" href="webim/logo.png">
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+   
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a1a; color: white; margin: 0; padding: 20px; }
+        .container { display: flex; flex-direction: column; gap: 15px; max-width: 1200px; margin: auto; }
+       
+        /* Editor Styling */
+        .editor-box { border-radius: 8px; overflow: hidden; border: 1px solid #444; }
+        .CodeMirror { height: 300px; font-size: 15px; }
+
+        /* Preview Styling */
+        .preview-header { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        #preview-window {
+            width: 100%;
+            height: 250px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .run-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .run-btn:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+
+
+    <!-- navigatiion bar -->
+
+    <header class="navbar">
+       <div><a href="index.html" class="logo">DevSchool</a></div>
+        <nav>
+
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <!-- <a href="e-learn.html">E-Learning</a> -->
+            <a href="codebase.html">DevLab</a>
+            <a href="login.html" class="btn-secondary">Login</a>
+            <a href="e-regis.html" class="btn-primary">Register</a>
+        </nav>
+    </header>
+
+
+<div class="container">
+    <h2>DevSchool CodeBase</h2>
+
+    <div class="editor-box">
+        <textarea id="code-editor">
+<h1 style="color: coral; font-family: sans-serif;">
+  Hello World!
+</h1>
+<button onclick="showAlert()">Click Me</button>
+
+<script>
+  function showAlert() {
+    alert("Code is running in the preview!");
+  }
+</script></textarea>
+    </div>
+
+    <div class="preview-header">
+        <span>Output Preview:</span>
+        <button class="run-btn" onclick="runCode()">Run Code ▶</button>
+    </div>
+
+    <iframe id="preview-window"></iframe>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/htmlmixed/htmlmixed.min.js"></script>
+
+<script>
+    // Initialize editor with HTML Mixed mode (supports HTML, CSS, and JS)
+    const editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+        mode: "htmlmixed",
+        theme: "dracula",
+        lineNumbers: true,
+        tabSize: 2,
+        lineWrapping: true
+    });
+
+    function runCode() {
+        const content = editor.getValue();
+        const iframe = document.getElementById('preview-window');
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+       
+        doc.open();
+        doc.write(content);
+        doc.close();
+    }
+
+    // Run once on load
+    runCode();
+</script>
+
+</body>
+</html>

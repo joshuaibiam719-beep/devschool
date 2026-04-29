@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>DevSchool | E-Learning Platform</title>
+  <!-- Google Fonts & Simple Icons (Font Awesome for visual icons) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: white;      /* overall background white */
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* main container */
+    .page-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 0 40px rgba(0,0,0,0.02);
+    }
+
+    /* ========== NAVIGATION BAR (inspired by provided image) ========== */
+    /* The image shows "DevSchool" as brand, then nav links: About, Contact, E-Learning, CodeBase, Login, Register.
+       Clean, modern, probably with subtle hover effects and a light background */
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid #eef2f6;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f2b3d 0%, #1b4a6e 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .brand-accent {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #f97316;
+    }
+
+    /* desktop nav menu */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #2c3e50;
+      transition: 0.2s ease;
+      padding: 0.5rem 0;
+      letter-spacing: -0.2px;
+    }
+
+    .nav-links li a:hover {
+      color: #f97316;
+      border-bottom: 2px solid #f97316;
+    }
+
+    /* special buttons for login/register? from image they are simple text links, but we add subtle style */
+    .nav-links li:last-child a,
+    .nav-links li:nth-last-child(2) a {
+      font-weight: 600;
+    }
+
+    /* Register could have light background? but image shows regular inline, we'll keep consistent */
+    /* Mobile responsive: hamburger menu (optional but friendly) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #1e293b;
+    }
+
+    /* ========== HERO / HEADER (optional but neat) ========== */
+    .hero-section {
+      text-align: center;
+      padding: 3rem 2rem 1.5rem 2rem;
+      background: white;
+    }
+    .hero-section h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #0f2b3d, #2b6a9e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .hero-section p {
+      font-size: 1.1rem;
+      color: #4a627a;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ========== COURSE SECTION (cards with videos) ========== */
+    .courses-container {
+      padding: 2rem 2.5rem 4rem 2.5rem;
+      background: white;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      border-left: 5px solid #f97316;
+      padding-left: 1rem;
+      color: #0f2b3d;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    /* course card */
+    .course-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      overflow: hidden;
+      border: 1px solid #edf2f7;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-thumb {
+      background: #f1f5f9;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #f97316;
+      border-bottom: 2px solid #f97316;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .course-thumb i {
+      transition: transform 0.2s;
+    }
+
+    .course-thumb:hover {
+      background: #eef2ff;
+    }
+
+    .course-thumb:hover i {
+      transform: scale(1.05);
+    }
+
+    .course-info {
+      padding: 1.5rem;
+    }
+
+    .course-info h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #0f2b3d;
+    }
+
+    .course-info p {
+      color: #5b6e8c;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .watch-btn {
+      background: #f97316;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .watch-btn i {
+      font-size: 0.8rem;
+    }
+
+    .watch-btn:hover {
+      background: #e2620c;
+    }
+
+    /* video modal overlay */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-content {
+      background: #0f172a;
+      border-radius: 2rem;
+      width: 90%;
+      max-width: 900px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 50px -12px black;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .modal-footer h4 {
+      color: #0f2b3d;
+      font-weight: 600;
+    }
+
+    .close-modal {
+      background: #f1f5f9;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      color: #1e293b;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .close-modal:hover {
+      background: #e2e8f0;
+      color: #f97316;
+    }
+
+    /* simple footer */
+    .footer {
+      background: #fafcff;
+      border-top: 1px solid #eef2f6;
+      text-align: center;
+      padding: 2rem;
+      color: #5c6f8c;
+      font-size: 0.85rem;
+    }
+
+    /* responsive */
+    @media (max-width: 860px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+      }
+      .course-grid {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .menu-toggle {
+        display: block;
+      }
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: white;
+        width: 70%;
+        height: calc(100% - 70px);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        padding: 2rem 1.5rem;
+        gap: 1.8rem;
+        transition: 0.3s ease;
+        align-items: flex-start;
+        border-right: 1px solid #eef2f6;
+        z-index: 99;
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .nav-links li a {
+        font-size: 1.1rem;
+      }
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      .courses-container {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand, .brand-accent {
+        font-size: 1.4rem;
+      }
+      .watch-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <!-- Navigation Bar: As per image - DevSchool, About, Contact, E-Learning, CodeBase, Login, Register -->
+  <nav class="navbar">
+    <div class="logo-area">
+      <span class="brand">Dev</span><span class="brand-accent">School</span>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links-list">
+      <li><a href="#" class="nav-about">About</a></li>
+      <li><a href="#" class="nav-contact">Contact</a></li>
+      <li><a href="#" class="nav-elearning">E-Learning</a></li>
+      <li><a href="#" class="nav-codebase">CodeBase</a></li>
+      <li><a href="#" class="nav-login">Login</a></li>
+      <li><a href="#" class="nav-register">Register</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero intro (consistent with e-learning context) -->
+  <div class="hero-section">
+    <h1>Level up your coding journey</h1>
+    <p>Explore expert-led courses, hands-on projects, and interactive video lessons. Click any course card to start learning.</p>
+  </div>
+
+  <!-- Course Section: Each course card shows a video when clicked (modal appears) -->
+  <div class="courses-container">
+    <div class="section-title">📚 Featured Courses</div>
+    <div class="course-grid" id="courseGrid">
+      <!-- Course 1: JavaScript Mastery -->
+      <div class="course-card" data-video-id="dQw4w9WgXcQ" data-course-title="JavaScript Mastery: Modern ES6+">
+        <div class="course-thumb">
+          <i class="fab fa-js fa-4x"></i>
+        </div>
+        <div class="course-info">
+          <h3>JavaScript Mastery</h3>
+          <p>Deep dive into async, closures, and modern frameworks. Build real-world projects.</p>
+          <button class="watch-btn"><i class="fas fa-play-circle"></i> Watch preview</button>
+        </div>
+      </div>
+      <!-- Course 2: React Complete Guide -->
+      <div class="course-card" data-video-id="SqcY0GlETPk" data-course-title="React - The Complete Guide 2025">
+        <div class="course-thumb">
+          <i class="fab fa-react fa-4x"></i>
+        </div>
+        <div class="course-info">
+          <h3>React & Hooks Deep Dive</h3>
+          <p>Master components, state, context, and build dynamic apps with React 19.</p>
+          <button class="watch-btn"><i class="fas fa-play-circle"></i> Watch preview</button>
+        </div>
+      </div>
+      <!-- Course 3: Python Data Science -->
+      <div class="course-card" data-video-id="ua-CiDNNj30" data-course-title="Python for Data Science & AI">
+        <div class="course-thumb">
+          <i class="fab fa-python fa-4x"></i>
+        </div>
+        <div class="course-info">
+          <h3>Python Data Science</h3>
+          <p>NumPy, Pandas, Matplotlib, and intro to machine learning with real datasets.</p>
+          <button class="watch-btn"><i class="fas fa-play-circle"></i> Watch preview</button>
+        </div>
+      </div>
+      <!-- Course 4: UI/UX Fundamentals -->
+      <div class="course-card" data-video-id="pNawhHEQYyc" data-course-title="UI/UX Design Principles">
+        <div class="course-thumb">
+          <i class="fas fa-palette fa-4x"></i>
+        </div>
+        <div class="course-info">
+          <h3>UI/UX Fundamentals</h3>
+          <p>Learn design thinking, wireframing, and prototyping with Figma.</p>
+          <button class="watch-btn"><i class="fas fa-play-circle"></i> Watch preview</button>
+        </div>
+      </div>
+      <!-- Course 5: Backend with Node.js -->
+      <div class="course-card" data-video-id="Oe421EPjeBE" data-course-title="Node.js & Express Masterclass">
+        <div class="course-thumb">
+          <i class="fab fa-node-js fa-4x"></i>
+        </div>
+        <div class="course-info">
+          <h3>Node.js & Backend API</h3>
+          <p>REST APIs, authentication, databases, and deployment strategies.</p>
+          <button class="watch-btn"><i class="fas fa-play-circle"></i> Watch preview</button>
+        </div>
+      </div>
+      <!-- Course 6: Git & GitHub workflow -->
+      <div class="course-card" data-video-id="RGOj5lH0K6k" data-course-title="Git & Collaboration">
+        <div class="course-thumb">
+          <i class="fab fa-git-alt fa-4x"></i>
+        </div>
+        <div class="course-info">
+          <h3>Git & GitHub Essentials</h3>
+          <p>Version control, branching, and open-source collaboration techniques.</p>
+          <button class="watch-btn"><i class="fas fa-play-circle"></i> Watch preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 DevSchool — Empowering developers worldwide. All video previews are for educational demonstration.</p>
+  </div>
+</div>
+
+<!-- VIDEO MODAL (hidden initially) -->
+<div id="videoModal" class="video-modal">
+  <div class="modal-content">
+    <div class="video-container" id="modalVideoFrame">
+      <!-- iframe will be injected dynamically -->
+    </div>
+    <div class="modal-footer">
+      <h4 id="modalCourseTitle">Course Preview</h4>
+      <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- 1) MOBILE MENU TOGGLE (improve UX)
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinksList = document.getElementById('nav-links-list');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      navLinksList.classList.toggle('active');
+      // optional: change icon
+      const icon = menuToggle.querySelector('i');
+      if (navLinksList.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+  }
+
+  // Close mobile menu when clicking on a nav link (better for small screens)
+  const allNavLinks = document.querySelectorAll('.nav-links li a');
+  allNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // For demonstration, we show alerts for pages that are not yet implemented (optional)
+      // but we also keep navigation bar like a real website with smooth scroll or just informative.
+      // Since it's an e-learning page content: we can show demo info for each link (non-intrusive)
+      const linkText = link.innerText.trim();
+      // don't prevent default completely: we want user to see behavior; but for 'E-Learning' we can scroll to courses.
+      if (linkText === 'E-Learning') {
+        e.preventDefault();
+        document.querySelector('.courses-container').scrollIntoView({ behavior: 'smooth' });
+      } else if (linkText === 'CodeBase') {
+        e.preventDefault();
+        alert('✨ CodeBase library — access code snippets, projects, and open-source resources (demo).');
+      } else if (linkText === 'Login' || linkText === 'Register') {
+        e.preventDefault();
+        alert(`🔐 ${linkText} functionality would open authentication modal. Demo version — great to see you!`);
+      } else if (linkText === 'About') {
+        e.preventDefault();
+        alert('📖 DevSchool: We provide high-quality tech education with hands-on video courses and mentorship.');
+      } else if (linkText === 'Contact') {
+        e.preventDefault();
+        alert('📧 Contact us: hello@devschool.com | +1 (555) 123-4567 (demo contact)');
+      } else {
+        // for other internal anchor like dummy hash, but we prevent to avoid page jump.
+        if(link.getAttribute('href') === '#') e.preventDefault();
+      }
+      // close mobile menu after click on mobile
+      if (navLinksList.classList.contains('active')) {
+        navLinksList.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      }
+    });
+  });
+
+  // --- 2) COURSE CARD VIDEO FUNCTIONALITY
+  // Each card has data-video-id (YouTube video ID) and data-course-title. When user clicks on the watch button OR the thumb area, we open modal.
+  // The background color is white (already body/cards white)
+ 
+  const modal = document.getElementById('videoModal');
+  const modalVideoContainer = document.getElementById('modalVideoFrame');
+  const modalCourseTitleSpan = document.getElementById('modalCourseTitle');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+ 
+  // function to open modal with specific video ID and title
+  function openVideoModal(videoId, courseTitle) {
+    // Build YouTube embed iframe with autoplay for better UX
+    const iframeSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0`;
+    modalVideoContainer.innerHTML = `<iframe src="${iframeSrc}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    modalCourseTitleSpan.innerText = courseTitle;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+ 
+  // close modal function
+  function closeVideoModal() {
+    modal.style.display = 'none';
+    // stop video by clearing iframe content
+    modalVideoContainer.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+ 
+  // Attach event listeners to all course cards
+  const courseCards = document.querySelectorAll('.course-card');
+  courseCards.forEach(card => {
+    const videoId = card.getAttribute('data-video-id');
+    const courseTitle = card.getAttribute('data-course-title');
+    const watchBtn = card.querySelector('.watch-btn');
+    const thumbArea = card.querySelector('.course-thumb');
+   
+    // helper to open
+    const handleOpen = (e) => {
+      e.stopPropagation();
+      if (videoId) {
+        openVideoModal(videoId, courseTitle);
+      } else {
+        alert('Preview video is being prepared. Stay tuned!');
+      }
+    };
+   
+    if (watchBtn) {
+      watchBtn.addEventListener('click', handleOpen);
+    }
+    if (thumbArea) {
+      thumbArea.addEventListener('click', handleOpen);
+    }
+  });
+ 
+  // close modal when clicking on close button or outside backdrop
+  closeModalBtn.addEventListener('click', closeVideoModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeVideoModal();
+    }
+  });
+ 
+  // Optional: escape key closes modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeVideoModal();
+    }
+  });
+ 
+  // extra polish: the 'E-Learning' in navbar also can scroll to courses, but already done.
+  // Also each link is interactive but does not break page design.
+  // For the "CodeBase", "About", etc we provide demo messages (already added)
+ 
+  // Additionally, for better UX, ensure that the active nav link highlights based on scroll (just nice)
+  // add a simple active class on scroll? Not required but make it feel complete.
+  // For responsiveness, we ensure that if any card has missing video fallback
+  console.log('DevSchool ready — click any course card to watch video previews');
+ 
+  // Preload style consistency - set all links to prevent actual navigation where needed, but we already did for all using preventDefault inside loop
+ 

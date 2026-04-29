@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DevSpark Editor</title>
+
+<style>
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:white;
+color:#222;
+height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 35px;
+border-bottom:1px solid #e6e6e6;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#0d6efd;
+}
+
+.nav-right{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.codebase{
+background:#0d6efd;
+color:white;
+padding:7px 18px;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+}
+
+.run-btn{
+background:#16a34a;
+color:white;
+border:none;
+padding:7px 18px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.run-btn:hover{
+background:#15803d;
+}
+
+
+/* MAIN LAYOUT */
+
+.editor-container{
+flex:1;
+display:flex;
+gap:20px;
+padding:25px;
+}
+
+
+/* PANELS */
+
+.editor-panel,
+.preview-panel{
+flex:1;
+background:white;
+border:1px solid #e6e6e6;
+border-radius:8px;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+
+/* PANEL HEADER */
+
+.panel-header{
+background:#f7f7f7;
+padding:10px 15px;
+font-size:14px;
+font-weight:bold;
+border-bottom:1px solid #e6e6e6;
+}
+
+
+/* EDITOR */
+
+textarea{
+flex:1;
+border:none;
+padding:15px;
+font-family:monospace;
+font-size:14px;
+outline:none;
+resize:none;
+}
+
+
+/* PREVIEW */
+
+iframe{
+flex:1;
+border:none;
+background:white;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">DevSpark</div>
+
+<div class="nav-right">
+<a href="#" class="codebase">CodeBase</a>
+<button class="run-btn" onclick="runCode()">Run</button>
+</div>
+
+</header>
+
+
+<section class="editor-container">
+
+<div class="editor-panel">
+
+<div class="panel-header">HTML Editor</div>
+
+<textarea id="editor">
+
+<h1>Hello DevSpark</h1>
+<p>This is running inside the preview window.</p>
+
+<style>
+body{
+font-family:Arial;
+background:#f0f0f0;
+padding:20px;
+}
+</style>
+
+</textarea>
+
+</div>
+
+
+
+<div class="preview-panel">
+
+<div class="panel-header">Preview</div>
+
+<iframe id="preview"></iframe>
+
+</div>
+
+</section>
+
+
+<script>
+
+function runCode(){
+
+let code = document.getElementById("editor").value;
+
+let preview = document.getElementById("preview");
+
+preview.srcdoc = code;
+
+}
+
+</script>
+
+
+</body>
+</html>

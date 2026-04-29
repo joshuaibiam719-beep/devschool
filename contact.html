@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - DevSchool</title>
+    <link rel="icon" type="image/x-icon" href="webim/logo.png">
+     <link rel="stylesheet" href="design.css">
+
+
+     
+    <!-- inline csss -->
+     <!-- inline css -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin: 8px 0;
+        }
+        .hours, .services {
+            margin-bottom: 20px;
+        }
+        .copy {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        form button {
+            padding: 10px 15px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background: #555;
+        }
+
+        .email{
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- my inline css -->
+     <!-- my inline css -->
+
+</head>
+<body>
+    <!-- navigatiion bar -->
+     <!-- <a href="index.html" style="text-decoration:none;"><b>⇐</b><i>Back</i></a> -->
+    <header class="navbar">
+        
+         <div><a href="index.html" class="logo">DevSchool</a></div>
+        <nav>
+             
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <!-- <a href="e-learn.html">E-Learning</a> -->
+            <!-- <a href="codebase.html">DevLab</a> -->
+            <a href="login.html" class="btn-secondary">Login</a>
+            <a href="e-regis.html" class="btn-primary">Register</a>
+        </nav>
+    </header>
+
+
+<div class="container">
+    <h1>Contact Us – DevSchool</h1>
+    <p>At <strong>DevSchool</strong>, we are committed to providing you with the best learning experience in technology and digital skills. Whether you have questions about our programs, need support, or want to learn more about how to get started, we are here to help.</p>
+
+    <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p><strong>📍 Location:</strong> Abakaliki, Ebonyi State, Nigeria</p>
+        <p><strong>📞 Phone:</strong> 08100134656</p>
+        <p><strong>📧 Email:</strong> <a href="devschooladmin@gmail.com" class="email">devschooladmin@gmail.com</a></p>
+    </div>
+
+    <div class="hours">
+        <h2>Office Hours</h2>
+        <p>Monday – Friday: 9:00 AM – 5:00 PM</p>
+        <p>Saturday: 10:00 AM – 2:00 PM</p>
+        <p>Sunday & Public Holidays: Closed</p>
+    </div>
+
+    <div class="services">
+        <h2>Send Us a Message</h2>
+        <p>Have a question or inquiry? Fill out the form below and we will respond as soon as possible.</p>
+
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <div class="services">
+        <h2>Why Contact DevSchool?</h2>
+        <p>At DevSchool, we prioritize your success. Our team is dedicated to guiding you every step of the way—from choosing the right course to completing your learning journey. No question is too small, and we are always ready to support you.</p>
+    </div>
+
+    <div class="services">
+        <h2>Stay Connected</h2>
+        <p>Follow us on our social media platforms to stay updated on new courses, events, and opportunities. Join our growing community of learners and innovators.</p>
+    </div>
+</div>
+
+<div class="copy">
+   <p>© <span id="year"></span> DevSchool | All rights reserved.</p>
+</div>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

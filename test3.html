@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>DevSchool - Video Learning Platform</title>
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+            color: #1a1a2e;
+            position: relative;
+        }
+
+        /* Subtle background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(#e0e7ff 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* DevSchool Title */
+        .main-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 40%, #2563eb 70%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease backwards;
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            border-color: #c7d2fe;
+            box-shadow: 0 12px 24px -8px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Top accent border on hover */
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #2563eb);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .section-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Special styling for last two sections */
+        .section-card.special {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border-left: 4px solid #7c3aed;
+        }
+
+        /* Video Styling */
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .video-item {
+            flex: 1 1 300px;
+            background: #f8fafc;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            border-color: #c7d2fe;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background: #000;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            display: block;
+        }
+
+        video:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
+            border-color: #818cf8;
+        }
+
+        /* Video controls styling */
+        video::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.9));
+            border-radius: 12px;
+        }
+
+        video::-webkit-media-controls-play-button {
+            background-color: #4f46e5;
+            border-radius: 50%;
+        }
+
+        video::-webkit-media-controls-timeline {
+            background-color: rgba(79, 70, 229, 0.3);
+            border-radius: 10px;
+        }
+
+        /* Text content styling */
+        .course-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0.6rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+            color: #334155;
+        }
+
+        .course-text::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #4f46e5;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+            padding-left: 0 !important;
+        }
+
+        .section-title::before {
+            display: none !important;
+        }
+
+        /* HR Dividers */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c7d2fe, #818cf8, #c7d2fe, transparent);
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        /* Video caption */
+        .video-caption {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-top: 0.75rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+           
+            .main-title {
+                font-size: 2.5rem;
+            }
+           
+            .section-card {
+                padding: 1.2rem 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+           
+            .video-grid {
+                gap: 1rem;
+            }
+           
+            .video-item {
+                padding: 0.75rem;
+            }
+           
+            video:hover {
+                transform: scale(1.01);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation delays */
+        .section-card:nth-child(1) { animation-delay: 0.05s; }
+        .section-card:nth-child(2) { animation-delay: 0.1s; }
+        .section-card:nth-child(3) { animation-delay: 0.15s; }
+        .section-card:nth-child(4) { animation-delay: 0.2s; }
+        .section-card:nth-child(5) { animation-delay: 0.25s; }
+        .section-card:nth-child(6) { animation-delay: 0.3s; }
+        .section-card:nth-child(7) { animation-delay: 0.35s; }
+        .section-card:nth-child(8) { animation-delay: 0.4s; }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #818cf8, #a78bfa);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        }
+
+        /* Selection color */
+        ::selection {
+            background: #818cf8;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">DevSchool</h1>
+
+        <!-- HTML FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">HTML FULL COURSE</div>
+            <div class="course-text">HTML Basics Tutorial</div>
+            <div class="video-grid">
+                <div class="video-item">
+                      <video width="320" height="240" controls>
+  <source src="web_vidoes/HTML & CSS Full Course for free 🌎.mp4" type="video/mp4">
+</video>
+                    <div class="video-caption">📺 HTML Introduction</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=HTML+Elements">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">📺 HTML Elements & Tags</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=HTML+Forms">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_5mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">📺 HTML Forms</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CSS FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">CSS FULL COURSE</div>
+            <div class="course-text">CSS Styling Tutorial</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=CSS+Basics">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🎨 CSS Fundamentals</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=CSS+Flexbox">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🎨 CSS Flexbox & Grid</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHP FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">PHP FULL COURSE</div>
+            <div class="course-text">PHP Backend Development</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=PHP+Intro">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🐘 PHP Introduction</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=PHP+Database">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🐘 PHP with Databases</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PYTHON FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">PYTHON FULL COURSE</div>
+            <div class="course-text">Python Programming</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=Python+Basics">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🐍 Python Basics</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=Python+OOP">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🐍 Object Oriented Python</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=Python+Projects">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_5mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🐍 Python Projects</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IS FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">IS FULL COURSE</div>
+            <div class="course-text">Information Systems</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=IS+Fundamentals">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">💻 IS Fundamentals</div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- SQL FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">SQL FULL COURSE</div>
+            <div class="course-text">Database Management</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=SQL+Basics">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🗄️ SQL Basics</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=SQL+Advanced">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🗄️ Advanced SQL</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MYSQL FULL COURSE Section -->
+        <div class="section-card">
+            <div class="section-title">MYSQL FULL COURSE</div>
+            <div class="course-text">MySQL Database</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=MySQL+Intro">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🗄️ MySQL Introduction</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=MySQL+Queries">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🗄️ MySQL Queries</div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- UPLOAD IMG USING MYSQL AND PHP Section -->
+        <div class="section-card special">
+            <div class="section-title">UPLOAD IMG USING MYSQL AND PHP</div>
+            <div class="course-text">Upload image via php</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=PHP+Upload">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">📤 Image Upload with PHP</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=MySQL+Storage">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">📤 Store Images in MySQL</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IMAGE SLIDER WITH JS Section -->
+        <div class="section-card special">
+            <div class="section-title">IMAGE SLIDER WITH JS</div>
+            <div class="course-text">JavaScript Image Slider Tutorial</div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=JS+Slider">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">🎠 JavaScript Image Slider</div>
+                </div>
+                <div class="video-item">
+                    <video controls poster="https://via.placeholder.com/400x225/f1f5f9/4f46e5?text=Slider+Advanced">
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                   

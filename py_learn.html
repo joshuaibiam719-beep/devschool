@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>python</title>
+    <link rel="stylesheet" href="esitestyle.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div><a href="index.html" class="logo">DevSchool</a></div>
+        <ul>
+             <li><a href="html_learn.html" class="lab">HTML</a></li>
+             <li><a href="py_learn.html" class="lab">PYTHON</a></li>
+                 <li><a href="js_learn.html" class="lab">JAVASCRIPT</a></li>
+                  <li><a href="php_learn.html" class="lab">PHP</a></li>
+            <li><a href="code_editor.html" class="lab">DevLab</a></li>
+             <li><a href="learn.php" class="lab">Back</a></li>
+        
+
+              <!-- <li><a href="#">Back</a></li> -->
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>🐍 Introduction to Python</h2>
+
+        <p>
+Python is one of the most popular and beginner-friendly programming languages
+ in the world. It is widely used for building websites, automating tasks, 
+ analyzing data, and creating artificial intelligence applications.
+  Its simple and readable syntax makes it a great choice for both beginners and
+   experienced developers.</p>
+        <!-- <button>Get Started</button> -->
+    </section>
+
+    <!-- Lessons -->
+    <section class="lessons">
+        <h3>Popular Lessons</h3>
+
+        <div class="cards">
+            <div class="card">
+                <h4>Python Basics</h4>
+                <p>Learn the basics of Python Programming</p>
+                <a href="https://www.w3schools.com/python/default.asp">Start Lesson </a>
+            </div>
+
+            <div class="card">
+                <h4>Machine Learning</h4>
+                <p>Machine Learning and AI</p>
+                <a href="https://www.w3schools.com/python/python_ml_getting_started.asp">Start Lesson </a>
+            </div>
+
+            <div class="card">
+                <h4> Python MongoDB</h4>
+                <p>learn python MongoDB</p>
+                <a href="https://www.w3schools.com/python/python_mongodb_getstarted.asp">Start Lesson </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> DevSchool | All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

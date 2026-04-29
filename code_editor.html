@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DevSpark Editor</title>
+
+<link rel="stylesheet" href="code_editor.css">
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+<div><a href="index.html" class="logo">DevSchool</a></div>
+
+<div class="nav-right">
+
+<a href="html_learn.html" class="codebase">HTML</a>
+<a href="py_learn.html" class="codebase">PYTHON</a>
+<a href="js_learn.html" class="codebase">JAVASCRIPT</a>
+<a href="php_learn.html" class="codebase">PHP</a>
+ <a href="learn.php" class="codebase">DevLearn</a>      
+
+
+<button class="run-btn" onclick="runCode()">Run</button>
+</div>
+
+</header>
+
+
+<section class="editor-container">
+
+<div class="editor-panel">
+
+<div class="panel-header">Code Editor</div>
+
+<textarea id="editor">
+
+</textarea>
+
+</div>
+
+
+
+<div class="preview-panel">
+
+<div class="panel-header">Preview</div>
+
+<iframe id="preview"></iframe>
+
+</div>
+
+</section>
+
+
+<script>
+
+function runCode(){
+
+let code = document.getElementById("editor").value;
+
+let preview = document.getElementById("preview");
+
+preview.srcdoc = code;
+
+}
+
+</script>
+
+
+</body>
+</html>

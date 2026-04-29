@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>DevSchool | Master Coding with Full Courses</title>
+    <!-- Google Fonts & modern smooth feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #eef2f5 100%);
+            color: #1a2c3e;
+            line-height: 1.4;
+            padding: 2rem 1.5rem;
+        }
+
+        /* modern container with max-width */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header / devschool branding */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(6px);
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            color: #2563eb;
+            filter: drop-shadow(0 2px 4px rgba(37,99,235,0.2));
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f2b3d, #1e4a76);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #2c5a7a;
+            background: #ffffffcc;
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+        }
+
+        /* grid layout: main 2 columns, but we will create a flexible grid for all cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        /* elegant card design */
+        .course-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 1.8rem 1.6rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255,255,255,0.6);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.2);
+            border-color: #cbdff2;
+            background: white;
+        }
+
+        /* subtle gradient accent line */
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(135deg, #2563eb, #38bdf8);
+            border-radius: 32px 0 0 32px;
+            opacity: 0.7;
+        }
+
+        /* card header with icon + title */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(125deg, #eef6ff, #e0eaff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            font-size: 1.8rem;
+            color: #1e4a76;
+            transition: all 0.2s;
+        }
+
+        .course-card:hover .card-icon {
+            background: linear-gradient(125deg, #2563eb, #3b82f6);
+            color: white;
+            transform: scale(0.98);
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #0a2942;
+        }
+
+        .badge {
+            background: #eaf5ff;
+            color: #1e6faf;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 0.4rem;
+            width: fit-content;
+        }
+
+        .course-description {
+            font-size: 0.9rem;
+            color: #2c5a7a;
+            margin: 0.8rem 0 1rem;
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 1rem 0 1.2rem;
+        }
+
+        .tech-stack span {
+            background: #f0f4f9;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1f4e79;
+        }
+
+        .btn-details {
+            background: transparent;
+            border: 1.5px solid #bdd4e7;
+            border-radius: 40px;
+            padding: 0.6rem 1rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+            cursor: default;
+            color: #2563eb;
+            width: fit-content;
+            margin-top: 8px;
+        }
+
+        .btn-details i {
+            font-size: 0.8rem;
+        }
+
+        .course-card:hover .btn-details {
+            background: #eff6ff;
+            border-color: #2563eb;
+        }
+
+        /* special card for the advanced / image slider / upload section */
+        .advanced-section {
+            margin-top: 1rem;
+            grid-column: span 1;
+        }
+
+        /* secondary decorative group (optional row) */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f2b3d;
+            border-left: 5px solid #2563eb;
+            padding-left: 1rem;
+        }
+
+        .section-title i {
+            color: #3b82f6;
+            font-size: 1.6rem;
+        }
+
+        hr {
+            margin: 1rem 0 0.5rem;
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #cbdff2, transparent);
+        }
+
+        /* footer inspiration */
+        .footer-note {
+            text-align: center;
+            margin-top: 3.5rem;
+            padding: 1.5rem 0.5rem;
+            border-top: 1px solid #cbdff2;
+            color: #4b6f8e;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        /* responsive tweaks */
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+            }
+            .card-title {
+                font-size: 1.4rem;
+            }
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* for the courses that contain extra info like "UPLOAD IMG USING MYSQL AND PHP" */
+        .special-meta {
+            background: #fff1e0;
+            border-radius: 16px;
+            padding: 0.5rem 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #b45309;
+        }
+        .special-meta i {
+            font-size: 0.9rem;
+        }
+
+        /* make card details look consistent */
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Hero with DevSchool branding -->
+    <div class="hero-section">
+        <div class="logo">
+            <i class="fas fa-laptop-code"></i>
+            <h1>DevSchool</h1>
+        </div>
+        <div class="tagline">
+            <i class="fas fa-graduation-cap"></i>  Full-stack mastery · Industry-ready courses
+        </div>
+    </div>
+
+    <!-- Dynamic grid: we map exactly the content from the brief:
+         HTML FULL COURSE, CSS FULL COURSE, PHP FULL COURSE, PYTHON FULL COURSE, JS FULL COURSE,
+         SQL FULL COURSE, MYSQL FULL COURSE, UPLOAD IMG USING MYSQL AND PHP, IMAGE SLIDER WITH JS
+         and we'll create beautiful cards with descriptions reflecting these names.
+    -->
+    <div class="courses-grid">
+        <!-- HTML FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fab fa-html5"></i></div>
+                <div class="card-title">HTML FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-code"></i> Beginner to Advanced</div>
+            <div class="course-description">Master semantic markup, forms, accessibility, and modern HTML5 APIs. Build solid foundation for web structure.</div>
+            <div class="tech-stack"><span>HTML5</span><span>SEO basics</span><span>Accessibility</span></div>
+            <div class="btn-details"><i class="fas fa-book-open"></i> Explore curriculum</div>
+        </div>
+
+        <!-- CSS FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fab fa-css3-alt"></i></div>
+                <div class="card-title">CSS FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-paintbrush"></i> Flex · Grid · Animations</div>
+            <div class="course-description">Complete guide to styling: responsive design, variables, transitions, Tailwind fundamentals, and creative layouts.</div>
+            <div class="tech-stack"><span>Flexbox</span><span>Grid</span><span>Animations</span><span>Sass</span></div>
+            <div class="btn-details"><i class="fas fa-palette"></i> Start styling</div>
+        </div>
+
+        <!-- PHP FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fab fa-php"></i></div>
+                <div class="card-title">PHP FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-server"></i> Backend logic</div>
+            <div class="course-description">Learn server-side scripting, OOP, sessions, cookies, and build dynamic web applications with PHP 8.</div>
+            <div class="tech-stack"><span>PHP</span><span>Composer</span><span>MVC basics</span></div>
+            <div class="btn-details"><i class="fas fa-database"></i> Dive into PHP</div>
+        </div>
+
+        <!-- PYTHON FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fab fa-python"></i></div>
+                <div class="card-title">PYTHON FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-chart-line"></i> Data & Web</div>
+            <div class="course-description">From syntax to advanced: automation, APIs, Django/Flask, data structures, and real-world projects.</div>
+            <div class="tech-stack"><span>Python</span><span>OOP</span><span>Flask</span><span>Pandas</span></div>
+            <div class="btn-details"><i class="fas fa-rocket"></i> Code with Python</div>
+        </div>
+
+        <!-- JS FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fab fa-js"></i></div>
+                <div class="card-title">JS FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-bolt"></i> ES6+ · Async · DOM</div>
+            <div class="course-description">Deep dive into JavaScript: closures, promises, event loop, modern frameworks prep, and interactive UIs.</div>
+            <div class="tech-stack"><span>JavaScript</span><span>ES2024</span><span>APIs</span><span>React ready</span></div>
+            <div class="btn-details"><i class="fas fa-terminal"></i> Master JS</div>
+        </div>
+
+        <!-- SQL FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-database"></i></div>
+                <div class="card-title">SQL FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-table"></i> Queries & Design</div>
+            <div class="course-description">Become expert in relational databases: complex joins, subqueries, indexing, and database optimization.</div>
+            <div class="tech-stack"><span>PostgreSQL</span><span>MySQL</span><span>Query tuning</span></div>
+            <div class="btn-details"><i class="fas fa-search"></i> Analyze data</div>
+        </div>
+
+        <!-- MYSQL FULL COURSE -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-database"></i></div>
+                <div class="card-title">MYSQL FULL COURSE</div>
+            </div>
+            <div class="badge"><i class="fas fa-cloud-upload-alt"></i> CRUD · Stored Procedures</div>
+            <div class="course-description">Hands-on MySQL: schema design, transactions, user privileges, and performance monitoring for robust apps.</div>
+            <div class="tech-stack"><span>MySQL 8</span><span>phpMyAdmin</span><span>Joins</span></div>
+            <div class="btn-details"><i class="fas fa-chart-simple"></i> Manage databases</div>
+        </div>
+
+        <!-- UPLOAD IMG USING MYSQL AND PHP (special advanced) -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-upload"></i></div>
+                <div class="card-title">UPLOAD IMG USING MYSQL & PHP</div>
+            </div>
+            <div class="badge"><i class="fas fa-image"></i> File Handling · Security</div>
+            <div class="course-description">Build secure image upload system: store metadata in MySQL, validate files, resize images, and display gallery.</div>
+            <div class="special-meta">
+                <i class="fas fa-shield-alt"></i> <span>Sanitization, MIME types, and preview</span>
+            </div>
+            <div class="tech-stack"><span>PHP</span><span>MySQL BLOB/Path</span><span>GD Library</span></div>
+            <div class="btn-details"><i class="fas fa-camera-retro"></i> Master uploads</div>
+        </div>
+
+        <!-- IMAGE SLIDER WITH JS -->
+        <div class="course-card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fas fa-images"></i></div>
+                <div class="card-title">IMAGE SLIDER WITH JS</div>
+            </div>
+            <div class="badge"><i class="fas fa-sliders-h"></i> Interactive Components</div>
+            <div class="course-description">Create dynamic carousels with vanilla JavaScript: touch events, autoplay, navigation dots, and responsive sliders.</div>
+            <div class="special-meta">
+                <i class="fas fa-mouse-pointer"></i> <span>Pure JS, no libraries — full control</span>
+            </div>
+            <div class="tech-stack"><span>JavaScript DOM</span><span>CSS transitions</span><span>Event handlers</span></div>
+            <div class="btn-details"><i class="fas fa-arrow-right"></i> Build sliders</div>
+        </div>
+    </div>
+
+    <!-- Additional info row: reflect all content exactly from file: we already have 9 cards covering HTML,CSS,PHP,PYTHON,JS,SQL,MYSQL,UPLOAD IMG,IMAGE SLIDER -->
+    <!-- In case the original outline also includes "CSS FULL COURSE" and so on, it's all there, with extra explanation -->
+   
+    <!-- Optional section: a glimpse of "Full course bundles" to match devschool vibe -->
+    <div class="section-title">
+        <i class="fas fa-layer-group"></i>
+        <span>All-in-One Learning Paths</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; background: #ffffffb3; border-radius: 32px; padding: 1.4rem 1.8rem; margin: 0 0 2rem 0; backdrop-filter: blur(4px); border: 1px solid rgba(37,99,235,0.1);">
+        <div><i class="fas fa-check-circle" style="color:#2563eb"></i> Full-stack developer track</div>
+        <div><i class="fas fa-check-circle" style="color:#2563eb"></i> Database + backend integration</div>
+        <div><i class="fas fa-check-circle" style="color:#2563eb"></i> Modern JS & interactive UI</div>
+        <div><i class="fas fa-check-circle" style="color:#2563eb"></i> Practical projects: image upload, slider</div>
+    </div>
+   
+    <!-- extra info about uploading and mysql/php from original brief, plus slider showcase  -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; margin-top: 1rem;">
+        <div style="background: linear-gradient(120deg, #eef2ff, #ffffff); border-radius: 24px; padding: 1.2rem 1.4rem;">
+            <i class="fas fa-database" style="font-size: 1.8rem; color: #2563eb;"></i>
+            <h3 style="margin: 0.5rem 0 0.3rem;">MySQL + PHP Integration</h3>
+            <p style="font-size: 0.85rem;">Master CRUD, image handling, secure authentication, and real-world dashboards using MySQLi & PDO.</p>
+        </div>
+        <div style="background: linear-gradient(120deg, #eef2ff, #ffffff); border-radius: 24px; padding: 1.2rem 1.4rem;">
+            <i class="fas fa-sliders-h" style="font-size: 1.8rem; color: #2563eb;"></i>
+            <h3 style="margin: 0.5rem 0 0.3rem;">Interactive Slider Projects</h3>
+            <p style="font-size: 0.85rem;">Create lightweight, touch-friendly sliders, carousels with dynamic content loading and smooth animations.</p>
+        </div>
+        <div style="background: linear-gradient(120deg, #eef2ff, #ffffff); border-radius: 24px; padding: 1.2rem 1.4rem;">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 1.8rem; color: #2563eb;"></i>
+            <h3 style="margin: 0.5rem 0 0.3rem;">Advanced Image Upload System</h3>
+            <p style="font-size: 0.85rem;">Full validation, watermark, multiple file support, and storing image references in MySQL.</p>
+        </div>
+    </div>
+
+    <!-- Footer with a little dynamic representation of all courses mentioned -->
+    <div class="footer-note">
+        <span><i class="fab fa-html5"></i> HTML5</span>
+        <span><i class="fab fa-css3"></i> CSS3</span>
+        <span><i class="fab fa-php"></i> PHP</span>
+        <span><i class="fab fa-python"></i> Python</span>
+        <span><i class="fab fa-js"></i> JavaScript</span>
+        <span><i class="fas fa-database"></i> SQL/MySQL</span>
+        <span><i class="fas fa-upload"></i> Upload</span>
+        <span><i class="fas fa-images"></i> Image Slider</span>
+    </div>
+    <div class="footer-note" style="border-top: none; padding-top: 0;">
+        <i class="fas fa-graduation-cap"></i> DevSchool — Full courses, real skills. 24/7 access & project-based learning.
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body{
+background:#ffffff;
+display:flex;
+min-height:100vh;
+color:#2d3748;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:220px;
+background:#f8fafc;
+border-right:1px solid #e2e8f0;
+padding:30px 20px;
+}
+
+.logo{
+font-size:20px;
+font-weight:600;
+margin-bottom:40px;
+color:#1f2937;
+}
+
+.nav a{
+display:block;
+text-decoration:none;
+padding:12px 16px;
+border-radius:6px;
+font-size:15px;
+color:#475569;
+transition:0.25s;
+}
+
+.nav a:hover{
+background:#e8f0fe;
+color:#2563eb;
+}
+
+/* Main Area */
+
+.main{
+flex:1;
+padding:40px;
+}
+
+/* Header */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+}
+
+.header h1{
+font-size:24px;
+font-weight:600;
+color:#1e293b;
+}
+
+/* Dashboard cards */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border:1px solid #e5e7eb;
+border-radius:10px;
+padding:25px;
+box-shadow:0 2px 6px rgba(0,0,0,0.04);
+transition:0.2s;
+}
+
+.card:hover{
+box-shadow:0 6px 14px rgba(0,0,0,0.08);
+}
+
+.card h3{
+font-size:14px;
+color:#64748b;
+margin-bottom:8px;
+}
+
+.card p{
+font-size:26px;
+font-weight:600;
+color:#2563eb;
+}
+
+/* table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}

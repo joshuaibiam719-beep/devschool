@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="icon" type="image/x-icon" href="webim/logo.png">
+     <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    
+ <!-- navigatiion bar -->
+  <!-- <a href="index.html" style="text-decoration:none;"><b>⇐</b><i>Back</i></a> -->
+    <header class="navbar">
+         <div><a href="index.html" class="logo">DevSchool</a></div>
+        <nav>
+        
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <!-- <a href="e-learn.html">E-Learning</a> -->
+            <!-- <a href="codebase.html">DevLab</a> -->
+            <a href="login.html" class="btn-secondary">Login</a>
+            <a href="e-regis.html" class="btn-primary">Register</a>
+        </nav>
+    </header>
+
+
+    
+
+<section class="about-section">
+    <div class="container">
+        <h1>About DevSchool</h1>
+        <p class="subtitle">Decoding the future, one line at a time.</p>
+       
+        <hr>
+
+        <div class="content-grid">
+            <div class="text-block">
+                <h2>Our Mission</h2>
+                <p>
+                    At DevSchool, we believe that technology should be accessible, elegant, and efficient.
+                    Our goal is to provide high-quality digital solutions that bridge the gap between
+                    complex data and human intuition.
+                </p>
+            </div>
+
+            <div class="text-block">
+                <h2>Info</h2>
+                <p>
+                    Founded by a team of passionate developers and designers, DevSchool started as a small
+                    project to simplify web standards. Today, we are a growing community dedicated to
+                    building tools that empower creators worldwide.
+                </p>
+            </div>
+        </div>
+
+        <div class="values">
+            <h3>Why Choose Us?</h3>
+            <ul>
+                <li><strong>Innovation:</strong> We stay ahead of the curve.</li>
+                <li><strong>Transparency:</strong> Our code and our process are open and honest.</li>
+                <li><strong>Quality:</strong> We don't ship until it's perfect.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="copy">
+    <p>© <span id="year"></span> DevSchool | All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+
+</body>
+</html>
